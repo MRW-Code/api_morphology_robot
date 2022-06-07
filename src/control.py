@@ -1,18 +1,8 @@
-import sys
-import cv2
-from threading import Thread, Lock
-import threading
 import time
 import serial
 import serial.tools.list_ports
-import string
 
 from PyQt5 import QtCore
-from PyQt5 import QtGui
-from PyQt5.QtGui import QImage
-from PyQt5.QtGui import QPixmap
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QVBoxLayout
@@ -24,8 +14,6 @@ from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QSpinBox
 from PyQt5.QtWidgets import QDoubleSpinBox
 from PyQt5.QtWidgets import QComboBox
-from PyQt5.QtCore import QThread
-from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtCore import Qt
 
 from src.capture import QtCapture

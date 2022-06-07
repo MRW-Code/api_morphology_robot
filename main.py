@@ -1,6 +1,4 @@
-from src.capture import QtCapture
 from src.control import ControlWindow
-from src.exploration import explorationThread
 
 import sys
 from PyQt5.QtWidgets import QApplication

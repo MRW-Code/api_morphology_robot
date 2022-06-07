@@ -28,8 +28,6 @@ from PyQt5.QtCore import QThread
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtCore import Qt
 
-from src.control import ControlWindow
-from src.exploration import explorationThread
 
 
 class QtCapture(QWidget):

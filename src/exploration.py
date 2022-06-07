@@ -28,8 +28,6 @@ from PyQt5.QtCore import QThread
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtCore import Qt
 
-from src.capture import QtCapture
-from src.control import ControlWindow
 
 
 class explorationThread(QThread):
