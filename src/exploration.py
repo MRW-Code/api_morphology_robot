@@ -27,7 +27,7 @@ from PyQt5.QtWidgets import QComboBox
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtCore import Qt
-
+import src.config as config
 
 
 class explorationThread(QThread):
@@ -41,11 +41,9 @@ class explorationThread(QThread):
         self.ThreadActive = True
         self.speed_explore = 'F200\n'
 
-        global pictureSaved
-        global taskReady
 
         if self.ThreadActive:
-            taskReady = False
+            config.taskReady = False
 
             if self.myvar.arduino.isOpen():
                 if self.myvar.systemCalibrate:
@@ -65,15 +63,15 @@ class explorationThread(QThread):
                     for i in range(0, self.myvar.spinRowsWells.value()):
                         for j in range(0, self.myvar.spinColsWells.value() - 1):
 
-                            pictureSaved = False
+                            config.pictureSaved = False
 
                             self.explorationUpdate.emit(True)
                             time.sleep(0.1)
-                            while pictureSaved == False:
+                            while config.pictureSaved == False:
                                 pass
                             print("figure stored" + str(i + 1) + "," + str(j + 1))
                             self.explorationUpdate.emit(False)
-                            pictureSaved = False
+                            config.pictureSaved = False
                             time.sleep(0.5)
 
                             print('@MOVRX' + str(dirXMovement * w2wDistance) + self.speed_explore)
@@ -97,15 +95,15 @@ class explorationThread(QThread):
                         self.myvar.arduino.write(bytes('$J=G21G91Y-' + str(w2wDistance) + self.speed_explore,
                                                        'utf-8'))  # update this by @CALSTART\r to calibrate all motors but use interrumptions
 
-                        pictureSaved = False
+                        config.pictureSaved = False
 
                         self.explorationUpdate.emit(True)
                         time.sleep(0.10)
-                        while pictureSaved == False:
+                        while config.pictureSaved == False:
                             pass
                         print("figure stored" + str(i + 1) + "," + str(j + 1))
                         self.explorationUpdate.emit(False)
-                        pictureSaved = False
+                        config.pictureSaved = False
                         time.sleep(5)
 
                         if not self.ThreadActive:
@@ -122,7 +120,7 @@ class explorationThread(QThread):
             else:
                 print("Port is not opened")
 
-            taskReady = True
+            config.taskReady = True
             print('---')
 
     def stop(self):

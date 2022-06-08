@@ -5,10 +5,8 @@ from PyQt5.QtWidgets import QApplication
 
 
 
-global pictureSaved
-global taskReady
-pictureSaved = None
-taskReady = None
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

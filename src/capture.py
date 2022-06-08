@@ -27,7 +27,7 @@ from PyQt5.QtWidgets import QComboBox
 from PyQt5.QtCore import QThread
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtCore import Qt
-
+import src.config as config
 
 
 class QtCapture(QWidget):
@@ -38,7 +38,7 @@ class QtCapture(QWidget):
 
         ## I CHANGED THIS TO GET VIDEO WORKING!!!!
         # self.cap = cv2.VideoCapture(*args, cv2.CAP_DSHOW)
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(2)
 
         self.readyToSave = False
         self.imgFileName = ''
@@ -67,10 +67,10 @@ class QtCapture(QWidget):
         if self.isCameraOpen:
             ret, frame = self.cap.read()
 
-            global pictureSaved
-            global taskReady
+            # global pictureSaved
+            # global taskReady
 
-            if taskReady:
+            if config.taskReady:
                 self.ith_frame = 1
 
                 # ------ Modification ------ #
@@ -81,7 +81,7 @@ class QtCapture(QWidget):
             # ------ Modification ------ #
 
             if self.readyToSave:
-                pictureSaved = False
+                config.pictureSaved = False
                 print("saving")
                 # cv2.imwrite('./20-07-21/img_' + self.imgFileName +'%05d.jpg'%self.ith_frame, frame)
                 cv2.imwrite('./' + self.imgFileName + '/' + '%05d.jpg' % self.ith_frame, frame)
@@ -89,7 +89,7 @@ class QtCapture(QWidget):
                 #                cv2.imwrite('img_%05d.jpg'%self.ith_frame, frame)
                 time.sleep(0.2)
                 self.ith_frame += 1
-                pictureSaved = True
+                config.pictureSaved = True
                 time.sleep(0.1)
 
             # My webcam yields frames in BGR format

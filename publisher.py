@@ -2,7 +2,7 @@
 
 import rospy
 from std_msgs.msg import Bool, String
-from main import pictureSaved
+# from main import pictureSaved
 
 
 def talker():
@@ -12,7 +12,7 @@ def talker():
     rospy.init_node('inference_trigger', anonymous=True)
     # Sleep object lets us wait
     rate = rospy.Rate(10)  # 10hz
-
+    pictureSaved=False
     while not rospy.is_shutdown():
         # Check if an image has been captured
         if pictureSaved:
